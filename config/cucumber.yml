@@ -1,0 +1,6 @@
+# config/cucumber.yml
+##YAML Template
+
+firefox: BROWSER=firefox
+safari: BROWSER=safari
+chrome: BROWSER=chrome

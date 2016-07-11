@@ -10,7 +10,7 @@ end
 
 Cucumber::Rake::Task.new(:firefox) do |t|
   t.profile = 'firefox'
-  t.cucumber_opts = 'features --tags @loblaws'
+  t.cucumber_opts = ''
 end
 
 Cucumber::Rake::Task.new(:chrome) do |t|

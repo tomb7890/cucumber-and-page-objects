@@ -3,6 +3,8 @@ class LoblawsPage
   page_url 'http://shop.loblaws.ca'
   text_field(:search_bar, id: 'search_bar')
 
+  attr_accessor :store_name
+
   def search_for(search_term)
     s = @browser.span(class: 'text-search')
     s.click
@@ -15,18 +17,14 @@ class LoblawsPage
     @browser.elements(class: 'deal-type', text: badge_text).size
   end
 
-  def initialize_page
-    @store_name = 'High Tech Road, Richmond Hill'
-  end
-
   def add_item_to_cart
     search_for 'asparagus'
     btn = @browser.button(class: 'btn btn-secondary btn-add-to-cart')
     btn.click
   end
 
-  def pick_a_store
-    path = "//a[@data-store-title='#{@store_name}']//span[.='Shop']"
+  def pick_a_store(store_name)
+    path = "//a[@data-store-title='#{store_name}']//span[.='Shop']"
     @browser.element(xpath: path).when_present.click
 
     path = '//button//span[@id="pickup-time-label"]'
@@ -40,7 +38,7 @@ class LoblawsPage
     el.when_present.click
   end
 
-  def displays_correct_store
-    @browser.text.downcase.include?(@store_name.downcase)
+  def displays_correct_store(store_name)
+    @browser.text.downcase.include?(store_name.downcase)
   end
 end

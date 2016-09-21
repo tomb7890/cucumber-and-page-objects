@@ -1,3 +1,5 @@
+store_name = 'High Tech Road, Richmond Hill'
+
 When(/^I add an item to the cart$/) do
   on_page LoblawsPage do |page|
     expect(page.add_item_to_cart)
@@ -6,13 +8,13 @@ end
 
 When(/^I pick a store$/) do
   on_page LoblawsPage do |page|
-    expect(page.pick_a_store)
+    expect(page.pick_a_store store_name)
   end
 end
 
 Then(/^The homepage should display the correct store$/) do
   on_page LoblawsPage do |page|
-    expect(page.displays_correct_store)
+    expect(page.displays_correct_store store_name)
   end
 end
 
